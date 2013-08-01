@@ -25,6 +25,7 @@ class PyTkPlot(object):
         self.scaleY=self.plotSizeY/(max(vY)-min(vY))
         self.marginX-=min(vX)*self.scaleX
         self.marginY+=min(vY)*self.scaleY
+        self.plotGrid(canvas,min(vX), max(vX), min(vY), max(vY),stepX=(max(vX)-min(vX))/5,stepY=(max(vY)-min(vY))/5)
         self.plotSeriesRaw(vX,vY)
         
         
@@ -58,14 +59,14 @@ class PyTkPlot(object):
         x=startX+stepX;
         while (x<endX):
             self.plotLine(canvas, x, startY, x, startY-5/self.scaleY, 2)
-            self.plotText(canvas, x, startY-6/self.scaleY, '%d' % x, anchor=N)
+            self.plotText(canvas, x, startY-6/self.scaleY, '%.2f' % x, anchor=N)
             x += stepX
         
         y=startY+stepY;
         while (y<endY):
             #canvas.create_text(x0-4,y, text='%5.1f'% (y), anchor=E)
             self.plotLine(canvas, startX, y, startX-5/self.scaleX, y, 2)
-            self.plotText(canvas, startX- 6/self.scaleX, y, "%d" % y, anchor=E)
+            self.plotText(canvas, startX- 6/self.scaleX, y, "%.2f" % y, anchor=E)
             y+=stepY
 
    
